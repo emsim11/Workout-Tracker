@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Workout Tracker</title>
+    <!-- Bootstrap CSS Link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <!-- CSS Style Sheet -->
+    <link rel="stylesheet" href="assets/styles/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Workout Tracker</h1>
+        <!-- Welcome Back Message -->
+        <container id="Welcome" style="display: none;">
+            <p>Welcome back to your fitness tracker!</p>
+        </container>
+    </header>
+    <!-- Landing Page to Enter User's First Name -->
+    <div class="User-Input">
+        <br>
+        <form id="userInput">
+            <label for="User-Name">Please enter your first name to continue:</label>
+            <br>
+            <input type="text" id="User-Name" name="User-Name" placeholder="First Name">
+            <div class="Submit-Button">
+                <button type="submit" form="userInput" value="Submit">
+                    <img id="submitButton" src="assets/images/Submit-Arrow-Button.svg" alt="Submit Arrow">
+                </button>
+            </div>
+        </form>
+    </div>
+    <!-- User's Specific Workout Page -->
+    <div id="Workout-Page" style="display: none;">
+        <!-- Quotable API Random Quote -->
+        <p id="Quote"></p>
+        <hr>
+        <main id="mainContent">
+            <!-- Date Container -->
+            <div class="Date">
+                <p class="Date"><strong>Today's Date:</strong></p>
+                <p id="currentDate"></p>
+            </div>
+            <!-- Form & Calendar Content Container (Date, Form, Calendar) -->
+            <div class="Display-Container">
+                <!-- Form Container -->
+                <div class="Form-Content">
+                    <!-- Form Container -->
+                    <p class="Form-Instructions">What type of workouts would you like to complete today?</p>
+                    <div class="selectForm">
+                        <button class="exerciseButton">Choose an Exercise Type</button><br>
+                        <ul class="workoutChoices" style="visibility: hidden;">
+                            <li style="--delay: 1" data-category="8">Complete Arm Workout</li>
+                            <li style="--delay: 2" data-category="9">Leg Workout</li>
+                            <li style="--delay: 2" data-category="14">Calves Workout</li>
+                            <li style="--delay: 3" data-category="11">Upper Body Workout</li>
+                            <li style="--delay: 4" data-category="12">Back Workout</li>
+                            <li style="--delay: 4" data-category="13">Shoulder Workout</li>
+                            <li style="--delay: 5" data-category="10">Ab Workout</li>
+                            <li style="--delay: 6" data-category="15">Cardio Workout</li>
+                            <li style="--delay: 7">Rest Day</li>
+                        </ul>
+                    </div>
+                    <!-- Exercise Checkbox Container -->
+                    <div class="checkboxContainer">
+                        <button class="Checkbox-Heading">Exercises:</button>
+                        <ul id="exercise">
+                        </ul>
+                        <!-- Start Workout Button -->
+                        <button id="startWorkout">Begin Workout</button>
+                    </div>
+                </div>
+                <!-- Calendar Container -->
+                <div class="cal-container">
+                    <div id="calendarBox">
+                        <header class="cal-header">
+                            <p class="cal-current-date"></p>
+                            <div class="cal-nav">
+                                <span id="cal-prev" class="material-symbols-rounded"><img class="Calendar-Nav-Button" src="assets/images/Previous-Arrow.svg" alt="Back-Button"></span>
+                                <button id="today-button">Today</button>
+                                <span id="cal-next" class="material-symbols-rounded"><img class="Calendar-Nav-Button" src="assets/images/Next-Arrow.svg" alt="Back-Button"></span>
+                            </div>
+                        </header>
+                        <div class="cal-body">
+                            <ul class="weekdays">
+                                <li>Sun</li>
+                                <li>Mon</li>
+                                <li>Tues</li>
+                                <li>Wed</li>
+                                <li>Thurs</li>
+                                <li>Fri</li>
+                                <li>Sat</li>
+                            </ul>
+                            <ul class="cal-dates">
+                                <!-- Your calendar dates will go here -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- Workout Planner Display -->
+        <div id="workoutPlanner" style="display: none;">
+            <!-- Update Based On User's Workout Choice Selection -->
+            <h2 class="workoutPlannerHeader">Workout Planner</h2>
+            <container id="countUpTimer">
+                <label id="minutes">00</label>
+                <label id="colon">:</label>
+                <label id="seconds">00</label>
+            </container>
+            <h3 id="workoutMessage">Message Goes Here...</h3>
+            <ul id="exerciseList">
+                <!-- Workouts Will Populate Here -->
+            </ul>
+            <button onclick="history.go(0);" id="returnToWorkoutTracker">Return Home</button>
+        </div>
+        <!-- Page Footer -->
+        <footer>
+            <p id="Footer-Paragraph">Made with ♡ by Paul Ruszkay, Emily Simone, and Tania Bezerra</p>
+            <p>&copy; 2024 Paul Ruszkay, Emily Simone, and Tania Bezerra</p>
+        </footer>
+    </div>
+    <!-- jQuery Script Files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Day.js Script File -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
+    <!-- Bootstrap JavaScript File -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+        crossorigin="anonymous"></script>
+    <!-- JavaScript File -->
+    <script src="assets/scripts/script.js"></script>
+</body>
+
+</html>
